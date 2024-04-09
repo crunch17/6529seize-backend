@@ -1,4 +1,4 @@
-name: Build backend and API on pull request
+name: Build backend and API on demand
 
 on:
   workflow_dispatch:
