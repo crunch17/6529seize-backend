@@ -22,16 +22,23 @@ export async function loadSecrets() {
 
   const secretsManager = new SecretsManager();
 
-  const secret = await secretsManager.getSecretValue({ SecretId: SECRET });
+  try {
+    const secret = await secretsManager.getSecretValue({ SecretId: SECRET });
+    logger.info('[SECRETS RETRIEVED]', secret);
 
-  if (secret.SecretString) {
-    const secretValue = JSON.parse(secret.SecretString);
-
-    Object.keys(secretValue).forEach(function (key) {
-      process.env[key] = secretValue[key];
-    });
+    if (secret.SecretString) {
+      const secretValue = JSON.parse(secret.SecretString);
+  
+      Object.keys(secretValue).forEach(function (key) {
+        process.env[key] = secretValue[key];
+      });
+    }
+    
+  } catch (error) {
+    logger.error('[SECRETS ERROR]', error);
+    throw error;  // Ensure failure is visible and can trigger retries if configured.
   }
-
+  
   if (!process.env.NODE_ENV) {
     logger.info('[ENVIRONMENT]', `[NODE_ENV MISSING]`, '[EXITING]');
     process.exit();
