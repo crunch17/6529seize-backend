@@ -50,6 +50,7 @@ import { calculateLevel } from './profiles/profile-level';
 import { Nft } from 'alchemy-sdk';
 import {
   constructFilters,
+  constructFiltersOR,
   getSearchFilters
 } from './api-serverless/src/api-helpers';
 
@@ -667,23 +668,36 @@ export async function fetchNewMemesSeasons() {
   return await sqlExecutor.execute(sql);
 }
 
-export async function fetchMemesLite(sortDir: string) {
-  const filters = constructFilters(
+export async function fetchMemesLite(
+  sortDir: string,
+  search: string,
+  pageSize: number
+) {
+  let filters = constructFilters(
     '',
     `${NFTS_TABLE}.contract = :memes_contract`
   );
-  const params = {
+  let params: any = {
     memes_contract: MEMES_CONTRACT
   };
+  if (search) {
+    const searchFilters = getSearchFilters(['name', 'artist'], search);
+    filters = constructFilters(filters, `(${searchFilters.filters})`);
+    const id = parseInt(search);
+    if (!isNaN(id)) {
+      filters = constructFiltersOR(filters, `id = :id`);
+      params = { ...params, ...searchFilters.params, id };
+    }
+  }
 
   return fetchPaginated(
     NFTS_TABLE,
     params,
     `id ${sortDir}`,
-    0,
+    pageSize,
     1,
     filters,
-    'id, name, contract, icon, thumbnail, scaled, image, animation',
+    'id, name, contract, icon, thumbnail, scaled, image, animation, artist',
     ''
   );
 }
