@@ -22,7 +22,7 @@ functions:
     handler: index.handler
     name: aggregatedActivityLoop
     role: arn:aws:iam::058264250962:role/DeployLambdaRole
-    reservedConcurrency: 1
+    #reservedConcurrency: 1
     events:
       - schedule: rate(1 minute)
     vpc:
