@@ -1,13 +1,12 @@
 module.exports.subnets = () => {
   return [
-    'subnet-04eb632923c6b40f2',
-    'subnet-0c72333e77abe97bd',
-    'subnet-084a5adea5207f11e'
+    'subnet-06b69a8ed344d7bb5',
+    'subnet-0d7dace1ad91b6da2'
   ];
 };
 
 module.exports.security = () => {
-  return ['sg-09c9d83c2643d513f', 'sg-032079a6514f06605'];
+  return ['sg-0bbc7d07c9cdf1c5a', 'sg-04a9813be5edc05c0', 'sg-0660019c4ac838cf3'];
 };
 
 module.exports.region = () => {
