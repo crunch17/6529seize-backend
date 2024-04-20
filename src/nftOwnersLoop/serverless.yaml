@@ -9,7 +9,7 @@ plugins:
 provider:
   name: aws
   runtime: nodejs18.x
-  memorySize: 5140
+  memorySize: 3008
   timeout: 900
 
 custom:
@@ -21,8 +21,8 @@ functions:
   nftOwnersLoop:
     handler: index.handler
     name: nftOwnersLoop
-    role: arn:aws:iam::987989283142:role/lambda-vpc-role
-    reservedConcurrency: 1
+    role: arn:aws:iam::058264250962:role/DeployLambdaRole
+    #reservedConcurrency: 1
     events:
       - schedule: rate(1 minute)
     vpc:
