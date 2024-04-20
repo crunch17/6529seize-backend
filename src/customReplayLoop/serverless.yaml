@@ -18,7 +18,7 @@ functions:
     name: customReplayLoop
     description: ${env:VERSION_DESCRIPTION}
     role: arn:aws:iam::058264250962:role/DeployLambdaRole
-    reservedConcurrency: 1
+    #reservedConcurrency: 1
     vpc:
       securityGroupIds: ${file(../../serverless-config/${opt:stage, self:provider.stage}/vpc.js):security}
       subnetIds: ${file(../../serverless-config/${opt:stage, self:provider.stage}/vpc.js):subnets}
