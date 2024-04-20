@@ -33,7 +33,7 @@ functions:
     name: marketStatsLAB
     description: ${env:VERSION_DESCRIPTION}
     role: arn:aws:iam::058264250962:role/DeployLambdaRole
-    reservedConcurrency: 1
+    #reservedConcurrency: 1
     events:
       - schedule: rate(10 minutes)
     vpc:
