@@ -15,7 +15,7 @@ provider:
 functions:
   overRatesRevocationLoop:
     handler: index.handler
-    reservedConcurrency: 1
+    #reservedConcurrency: 1
     name: overRatesRevocationLoop
     description: ${env:VERSION_DESCRIPTION}
     events:
