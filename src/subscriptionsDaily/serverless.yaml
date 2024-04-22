@@ -22,8 +22,8 @@ functions:
     handler: index.handler
     name: subscriptionsDaily
     description: ${env:VERSION_DESCRIPTION}
-    role: arn:aws:iam::987989283142:role/lambda-vpc-role
-    reservedConcurrency: 1
+    role: arn:aws:iam::058264250962:role/DeployLambdaRole
+    #reservedConcurrency: 1
     events:
       - schedule: cron(1 0 * * ? *)
     vpc:
