@@ -44,7 +44,7 @@ resources:
     OverRatesRevocationTDHCalculatedSubscription:
       Type: AWS::SNS::Subscription
       Properties:
-        TopicArn: arn:aws:sns:${file(../../serverless-config/${opt:stage, self:provider.stage}/vpc.js):region}:987989283142:tdh-calculation-done.fifo
+        TopicArn: arn:aws:sns:${file(../../serverless-config/${opt:stage, self:provider.stage}/vpc.js):region}:058264250962:tdh-calculation-done.fifo
         Protocol: sqs
         Endpoint: !GetAtt
           - OverRatesRevocationStartQueue
