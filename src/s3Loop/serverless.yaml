@@ -9,7 +9,7 @@ plugins:
 provider:
   name: aws
   runtime: nodejs18.x
-  memorySize: 5120
+  memorySize: 3008
   timeout: 900
 
 functions:
@@ -17,8 +17,8 @@ functions:
     handler: index.handler
     name: s3Loop
     description: ${env:VERSION_DESCRIPTION}
-    role: arn:aws:iam::987989283142:role/lambda-vpc-role
-    reservedConcurrency: 1
+    role: arn:aws:iam::058264250962:role/DeployLambdaRole
+    #reservedConcurrency: 1
     events:
       - schedule: rate(5 minutes)
     vpc:
